@@ -9,11 +9,9 @@ channels:
   - channelName: mychannel
     # the chaincodeIDs of all the fabric chaincodes in caliper-benchmarks
     contracts:
-    - id: fabcar
-    - id: fixed-asset
-    - id: marbles
-    - id: simple
-    - id: smallbank
+    - id: biobank
+    - id: currency
+
 
 organizations:
   - mspid: Org1MSP
@@ -22,7 +20,7 @@ organizations:
       certificates:
       - name: 'User1'
         clientPrivateKey:
-          path: 'networks/fabric/user/msp/keystore/9150f444c595bdf9fbeec4090ee4015afd624bab907f2d30661f337d086102c6_sk'
+          path: 'networks/fabric/user/msp/keystore/4db5546162759814870d8b84391ab4e0c59361bda99f0a92925d425b05e186f2_sk'
         clientSignedCert:
           path: 'networks/fabric/user/msp/signcerts/cert.pem'
     connectionProfile:
