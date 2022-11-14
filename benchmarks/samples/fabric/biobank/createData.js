@@ -28,6 +28,12 @@ class CreateDataWorkload extends WorkloadModuleBase {
         this.txIndex = 0;
     }
 
+    async initializeWorkloadModule(workerIndex, totalWorkers, roundIndex, roundArguments, sutAdapter, sutContext) {
+        await super.initializeWorkloadModule(workerIndex, totalWorkers, roundIndex, roundArguments, sutAdapter, sutContext);
+
+        
+    }
+
     /**
      * Assemble TXs for the round.
      * @return {Promise<TxStatus[]>}
@@ -47,12 +53,16 @@ class CreateDataWorkload extends WorkloadModuleBase {
         // let dataId = 'Client' + this.workerIndex + '_DATA' + this.txIndex.toString();
         let dataAttributes = JSON.stringify(dnaJson)
 
+        const { targetPeers, invokerMspId } = setInvokerMspId(this.txIndex)
+
         let args = {
             contractId: 'biobank',
             contractVersion: '1',
             contractFunction: 'DataContract:uploadRawData',
             contractArguments: [dataId, dataAttributes],
-            timeout: 30
+            timeout: 30,
+            targetPeers: [targetPeers],
+            invokerMspId: invokerMspId
         };
 
         await this.sutAdapter.sendRequests(args);
@@ -65,6 +75,35 @@ class CreateDataWorkload extends WorkloadModuleBase {
  */
 function createWorkloadModule() {
     return new CreateDataWorkload();
+}
+
+function setInvokerMspId(txIndex) {
+    let invokerMspId, targetPeers
+    if(txIndex%2 == 0){
+        invokerMspId = 'Org1MSP'
+        if(txIndex%8 == 0){
+            targetPeers = "peer0.org1.amazonbiobank.mooo.com"
+        } else if(txIndex%8 == 2){
+            targetPeers = "peer1.org1.amazonbiobank.mooo.com"
+        } else if(txIndex%8 == 4){
+            targetPeers = "peer2.org1.amazonbiobank.mooo.com"
+        } else if(txIndex%8 == 6){
+            targetPeers = "peer3.org1.amazonbiobank.mooo.com"
+        } 
+    } 
+    else if(txIndex%2 == 1){ 
+        invokerMspId = 'Org2MSP'
+        if(txIndex%8 == 1){
+            targetPeers = "peer0.org2.amazonbiobank.mooo.com"
+        } else if(txIndex%8 == 3){
+            targetPeers = "peer1.org2.amazonbiobank.mooo.com"
+        } else if(txIndex%8 == 5){
+            targetPeers = "peer2.org2.amazonbiobank.mooo.com"
+        } else if(txIndex%8 == 7){
+            targetPeers = "peer3.org2.amazonbiobank.mooo.com"
+        } 
+    }
+    return { invokerMspId, targetPeers }
 }
 
 module.exports.createWorkloadModule = createWorkloadModule;

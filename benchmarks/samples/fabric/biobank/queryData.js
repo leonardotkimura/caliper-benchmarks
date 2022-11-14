@@ -43,6 +43,14 @@ class QueryCarWorkload extends WorkloadModuleBase {
         await super.initializeWorkloadModule(workerIndex, totalWorkers, roundIndex, roundArguments, sutAdapter, sutContext);
 
         this.limitIndex = this.roundArguments.assets;
+
+        if(this.workerIndex%3 == 0){
+            this.invokerMspId = 'Org1MSP'
+        } else if(this.workerIndex%3 == 1){ 
+            this.invokerMspId = 'Org2MSP'
+        } else if(this.workerIndex%3 == 2){ 
+            this.invokerMspId = 'Org3MSP'
+        }
     }
 
     /**
@@ -53,13 +61,16 @@ class QueryCarWorkload extends WorkloadModuleBase {
         this.txIndex++;
         let dataId = 'Client' + this.workerIndex + '_DATA' + this.txIndex.toString();
 
+        
+
         let args = {
             contractId: 'biobank',
             contractVersion: 'v1',
             contractFunction: 'DataContract:readData',
             contractArguments: [dataId],
             timeout: 30,
-            readOnly: true
+            readOnly: true,
+            invokerMspId: this.invokerMspId
         };
 
         if (this.txIndex === this.limitIndex) {
