@@ -9,7 +9,7 @@ test:
       rateControl:
           type: fixed-rate
           opts:
-            tps: 50
+            tps: 70
       workload:
         module: benchmarks/samples/fabric/biobank/createData.js
     # - label: Change car owner.
@@ -35,7 +35,7 @@ test:
     #   rateControl:
     #       type: fixed-rate
     #       opts:
-    #         tps: 200
+    #         tps: 300
     #   workload:
     #     module: benchmarks/samples/fabric/biobank/queryData.js
     #     arguments:

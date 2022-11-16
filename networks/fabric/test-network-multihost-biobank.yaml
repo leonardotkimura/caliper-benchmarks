@@ -20,9 +20,9 @@ organizations:
       certificates:
       - name: 'User1'
         clientPrivateKey:
-          path: 'networks/fabric/org1/user/msp/keystore/8da4eec079716247893bf3b706d3d16ce9873e813169199f3ab8a87e357ef649_sk'
+          path: '../fabric-multihost/setup1/machines/vm1/crypto-config/peerOrganizations/org1.amazonbiobank.mooo.com/users/User1@org1.amazonbiobank.mooo.com/msp/keystore/d0aabfabc39342acc89b725068dc9bbc11c33cfc5ab91f4a7326fba71d74c703_sk'
         clientSignedCert:
-          path: 'networks/fabric/org1/user/msp/signcerts/cert.pem'
+          path: '../fabric-multihost/setup1/machines/vm1/crypto-config/peerOrganizations/org1.amazonbiobank.mooo.com/users/User1@org1.amazonbiobank.mooo.com/msp/signcerts/cert.pem'
     connectionProfile:
       path: 'networks/fabric/connection-org1.json'
       discover: true
@@ -33,9 +33,9 @@ organizations:
       certificates:
       - name: 'User1'
         clientPrivateKey:
-          path: 'networks/fabric/org2/user/msp/keystore/ab2725158b39fb573131c7c540c564697b774bbe4fa68b5353d1d1b9379fd39f_sk'
+          path: '../fabric-multihost/setup1/machines/vm2/crypto-config/peerOrganizations/org2.amazonbiobank.mooo.com/users/User1@org2.amazonbiobank.mooo.com/msp/keystore/eb506d3716144a0f048c11c591b466d37789423d313aad2d8743102b5e2fb68c_sk'
         clientSignedCert:
-          path: 'networks/fabric/org2/user/msp/signcerts/cert.pem'
+          path: '../fabric-multihost/setup1/machines/vm2/crypto-config/peerOrganizations/org2.amazonbiobank.mooo.com/users/User1@org2.amazonbiobank.mooo.com/msp/signcerts/cert.pem'
     connectionProfile:
       path: 'networks/fabric/connection-org2.json'
       discover: true

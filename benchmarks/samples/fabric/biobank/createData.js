@@ -106,4 +106,64 @@ function setInvokerMspId(txIndex) {
     return { invokerMspId, targetPeers }
 }
 
+// function setInvokerMspId(txIndex) {
+//         let invokerMspId, targetPeers
+//         if(txIndex%2 == 0){
+//             invokerMspId = 'Org1MSP'
+//             targetPeers = "peer0.org1.amazonbiobank.mooo.com"
+//         } 
+//         else if(txIndex%2 == 1){ 
+//             invokerMspId = 'Org2MSP'
+//             targetPeers = "peer0.org2.amazonbiobank.mooo.com"
+//         }
+//         return { invokerMspId, targetPeers }
+//     }
+    
+    
+// function setInvokerMspId(txIndex) {
+//     let invokerMspId, targetPeers
+//     if(txIndex%2 == 0){
+//         invokerMspId = 'Org1MSP'
+//         if(txIndex%4 == 0){
+//             targetPeers = "peer0.org1.amazonbiobank.mooo.com"
+//         } else if(txIndex%4 == 2){
+//             targetPeers = "peer1.org1.amazonbiobank.mooo.com"
+//         }
+//     } 
+//     else if(txIndex%2 == 1){ 
+//         invokerMspId = 'Org2MSP'
+//         if(txIndex%4 == 1){
+//             targetPeers = "peer0.org2.amazonbiobank.mooo.com"
+//         } else if(txIndex%4 == 3){
+//             targetPeers = "peer1.org2.amazonbiobank.mooo.com"
+//         }
+//     }
+//     return { invokerMspId, targetPeers }
+// }
+
+// function setInvokerMspId(txIndex) {
+//     let invokerMspId, targetPeers
+//     if(txIndex%2 == 0){
+//         invokerMspId = 'Org1MSP'
+//         if(txIndex%6 == 0){
+//             targetPeers = "peer0.org1.amazonbiobank.mooo.com"
+//         } else if(txIndex%6 == 2){
+//             targetPeers = "peer1.org1.amazonbiobank.mooo.com"
+//         } else if(txIndex%6 == 4){
+//             targetPeers = "peer2.org1.amazonbiobank.mooo.com"
+//         } 
+//     } 
+//     else if(txIndex%2 == 1){ 
+//         invokerMspId = 'Org2MSP'
+//         if(txIndex%6 == 1){
+//             targetPeers = "peer0.org2.amazonbiobank.mooo.com"
+//         } else if(txIndex%6 == 3){
+//             targetPeers = "peer1.org2.amazonbiobank.mooo.com"
+//         } else if(txIndex%6 == 5){
+//             targetPeers = "peer2.org2.amazonbiobank.mooo.com"
+//         }
+//     }
+//     return { invokerMspId, targetPeers }
+// }
+
 module.exports.createWorkloadModule = createWorkloadModule;

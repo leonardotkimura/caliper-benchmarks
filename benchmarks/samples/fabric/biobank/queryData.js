@@ -44,13 +44,6 @@ class QueryCarWorkload extends WorkloadModuleBase {
 
         this.limitIndex = this.roundArguments.assets;
 
-        if(this.workerIndex%3 == 0){
-            this.invokerMspId = 'Org1MSP'
-        } else if(this.workerIndex%3 == 1){ 
-            this.invokerMspId = 'Org2MSP'
-        } else if(this.workerIndex%3 == 2){ 
-            this.invokerMspId = 'Org3MSP'
-        }
     }
 
     /**
@@ -61,6 +54,7 @@ class QueryCarWorkload extends WorkloadModuleBase {
         this.txIndex++;
         let dataId = 'Client' + this.workerIndex + '_DATA' + this.txIndex.toString();
 
+        const { targetPeers, invokerMspId } = setInvokerMspId(this.txIndex)
         
 
         let args = {
@@ -69,8 +63,9 @@ class QueryCarWorkload extends WorkloadModuleBase {
             contractFunction: 'DataContract:readData',
             contractArguments: [dataId],
             timeout: 30,
+            targetPeers: [targetPeers],
             readOnly: true,
-            invokerMspId: this.invokerMspId
+            invokerMspId: invokerMspId
         };
 
         if (this.txIndex === this.limitIndex) {
@@ -88,5 +83,19 @@ class QueryCarWorkload extends WorkloadModuleBase {
 function createWorkloadModule() {
     return new QueryCarWorkload();
 }
+
+function setInvokerMspId(txIndex) {
+    let invokerMspId, targetPeers
+    if(txIndex%2 == 0){
+        invokerMspId = 'Org1MSP'
+        targetPeers = "peer0.org1.amazonbiobank.mooo.com"
+    } 
+    else if(txIndex%2 == 1){ 
+        invokerMspId = 'Org2MSP'
+        targetPeers = "peer0.org2.amazonbiobank.mooo.com"
+    }
+    return { invokerMspId, targetPeers }
+}
+
 
 module.exports.createWorkloadModule = createWorkloadModule;
